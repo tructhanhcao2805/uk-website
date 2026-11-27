@@ -147,6 +147,9 @@ form{background:#1C1C1C;color:#F7F4EE;padding:28px;display:grid;gap:14px;min-wid
 label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#A39E93;display:grid;gap:6px}
 input,select,textarea{font:inherit;font-size:15px;background:#2A2926;color:#F7F4EE;border:1px solid #3A3833;padding:11px 12px;width:100%}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.consent{display:flex;gap:10px;align-items:flex-start;text-transform:none;letter-spacing:0;font-family:var(--body,inherit);font-size:12.5px;line-height:1.45;color:#CFCAC0}
+.consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:#F2B705}
+.consent a{color:#F2B705}
 .fmsg{font-family:var(--mono);font-size:12px;color:var(--yellow)}
 @media (max-width:800px){.contact .wrap{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
 
@@ -343,8 +346,9 @@ footer b{color:#F7F4EE;font-family:var(--display);letter-spacing:.06em;font-weig
       <label for="f-addr">Property address<input id="f-addr" autocomplete="street-address"></label>
       <label for="f-type">Project<select id="f-type"><option>Detached ADU</option><option>Attached ADU</option><option>Garage conversion</option><option>JADU</option><option>Not sure yet</option></select></label>
       <label for="f-msg">Anything else<textarea id="f-msg" rows="3"></textarea></label>
+      <label class="consent" for="f-sms"><input id="f-sms" type="checkbox"><span>Yes, I agree to receive text messages from Ultimate Konstruction Design &amp; Build at the phone number above about my inquiry and project (scheduling, inspections, updates). Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="sms-terms.html">SMS Terms</a> and <a href="privacy.html">Privacy Policy</a>.</span></label>
       <button class="btn" type="submit" style="justify-content:center">Request my site visit</button>
-      <p class="fmsg" id="fmsg" hidden>Online form coming soon. Please call Hotline UK (714) 383-4567 or email info@ukdesign-build.com.</p>
+      <p class="fmsg" id="fmsg" hidden></p>
     </form>
   </div>
 </section>
@@ -357,7 +361,14 @@ footer b{color:#F7F4EE;font-family:var(--display);letter-spacing:.06em;font-weig
 </footer>
 
 <script>
-document.getElementById('lead').addEventListener('submit',function(e){e.preventDefault();document.getElementById('fmsg').hidden=false;});
+var M={n:'Name',p:'Phone',a:'Address',t:'Project',o:'Notes',s:'Site visit request',req:'Please enter your name and phone.',ok:'Your email app is opening with your request. Press Send, or call Hotline UK (714) 383-4567.'};
+document.getElementById('lead').addEventListener('submit',function(e){e.preventDefault();
+var g=function(i){return (document.getElementById(i).value||'').trim()};
+var m=document.getElementById('fmsg');
+if(!g('f-name')||!g('f-phone')){m.textContent=M.req;m.hidden=false;return;}
+var b=[M.n+': '+g('f-name'),M.p+': '+g('f-phone'),M.a+': '+g('f-addr'),M.t+': '+g('f-type'),M.o+': '+g('f-msg'),'SMS consent: '+(document.getElementById('f-sms').checked?'YES':'NO')].join('\n');
+location.href='mailto:info@ukdesign-build.com?subject='+encodeURIComponent(M.s+' - '+g('f-name'))+'&body='+encodeURIComponent(b);
+m.textContent=M.ok;m.hidden=false;});
 </script>
 
 </body>
