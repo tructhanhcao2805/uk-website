@@ -49,6 +49,10 @@ nav a:hover{opacity:1;color:var(--yellow)}
 @media (max-width:860px){nav{display:none}}
 @media (max-width:600px){.hcall{display:none}}
 
+.lang{display:flex;gap:4px;font-family:'IBM Plex Mono',monospace;font-size:13px;align-items:center}
+.lang a{text-decoration:none;padding:3px 7px;border:1px solid #3A3833;color:#A39E93}
+.lang a.on{background:#F2B705;border-color:#F2B705;color:#1C1C1C}
+.hright{display:flex;align-items:center;gap:16px}
 /* hero */
 .hero{background:#1C1C1C;color:#F7F4EE;position:relative;overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;padding-block:72px 64px;align-items:center}
@@ -174,7 +178,7 @@ footer b{color:#F7F4EE;font-family:var(--display);letter-spacing:.06em;font-weig
     <nav aria-label="Main">
       <a href="#adu">ADUs</a><a href="#services">3D &amp; Permit</a><a href="#process">Process</a><a href="#why">About</a><a href="#contact">Contact</a>
     </nav>
-    <span class="hcall">Hotline UK (714) 383-4567</span>
+    <div class="hright"><span class="hcall">Hotline UK (714) 383-4567</span><span class="lang"><a class="on" href="index.html" hreflang="en">EN</a><a href="vi.html" hreflang="vi">VI</a></span></div>
   </div>
 </header>
 
@@ -348,7 +352,7 @@ footer b{color:#F7F4EE;font-family:var(--display);letter-spacing:.06em;font-weig
 <footer>
   <div class="wrap">
     <span><b>UK DESIGN &amp; BUILD</b> · Ultimate Konstruction · CA License # 1161663</span>
-    <span><a href="privacy.html">Privacy Policy</a> · <a href="sms-terms.html">SMS Terms</a> · English · Tiếng Việt · 中文</span>
+    <span><a href="privacy.html">Privacy Policy</a> · <a href="sms-terms.html">SMS Terms</a> · <a href="vi.html">Tiếng Việt</a></span>
   </div>
 </footer>
 
